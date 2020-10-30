@@ -1,0 +1,19 @@
+version: '3.7'
+services:
+  hits:
+    image: devops:05-redis
+    depends_on:
+     - redis
+    networks:
+     - hits-redis
+    ports:
+     - 5000:5000
+  redis:
+    image: redisdb:05
+    networks:
+     - hits-redis
+    ports: 
+     - 6379:6379
+networks:
+  hits-redis:
+    driver: bridge
