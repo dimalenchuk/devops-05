@@ -1,0 +1,17 @@
+FROM python:3.6.0  
+MAINTAINER dimalenchuk@gmail.com   
+
+ADD hits /hits/ 
+WORKDIR /hits  
+
+
+COPY requirements.txt . 
+RUN apt update 
+RUN apt install python-pip -y 
+RUN pip install -r requirements.txt 
+RUN mkdir /hits/logs  
+
+ENTRYPOINT ["python3"] 
+CMD ["/hits/app.py"] 
+
+EXPOSE 5000
